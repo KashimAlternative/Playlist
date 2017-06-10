@@ -1,0 +1,540 @@
+/* Global */
+*{
+    width: auto;
+    height: auto;
+
+    font-size: 14px;
+    font-family: sans-serif;
+
+    background-color: #202020;
+    color: #C0C0C0;
+}
+body{
+    padding: 8px;
+}
+table,
+tbody{
+    width: 100%;
+}
+button{
+    padding: 0px;
+
+    width: 96px;
+    height: 28px;
+
+    border: 0px ;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    background: #606060;
+    color: #F0F0F0;
+}
+button:hover{
+    background: #4040C0;
+    color: #E0E0E0;
+}
+.hidden{
+    display: none;
+}
+
+div.base{
+
+    width: 100%;
+
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+    border-top: 2px solid #FF4040;
+}
+
+/* Selector */
+select.playlist{
+    padding: 4px;
+
+    -moz-appearance:    none;
+    -webkit-appearance: none;
+    
+    width: 100%;
+    height: 36px;
+
+    border: none;
+    border-radius: 0;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    background: inherit;
+    color: inherit;
+
+}
+select.playlist:hover{
+    /* #### vendor dependence #### */
+    background:      -o-linear-gradient( left , #404080 , #202020 );
+    background:    -moz-linear-gradient( left , #404080 , #202020 );
+    background: -webkit-linear-gradient( left , #404080 , #202020 );
+    /* #### vendor dependence #### */
+}
+select.playlist option{
+    height: 1.5em;
+
+    font-size: 16px;
+    font-weight: normal;
+    text-shadow: none;
+
+    background: #303030;
+    color: inherit;
+}
+select.playlist option:nth-child(odd){
+    background: #404040;
+}
+
+/* URL */
+#urlSearch{
+    width: 100%;
+}
+#url{
+
+    width: calc( 100% - 4px );
+    padding-left: 4px;
+    
+    border: none;
+
+    background: #404040;
+}
+
+/* Search Result */
+#searchResult{
+    display: flex;
+    flex-direction: row;
+}
+.resultItem,
+.resultItem .thumbnail{
+    width: 160px;
+    height: 120px;
+}
+.resultItem{
+    display: block;
+
+    padding: 4px;
+}
+.resultItem .title{
+
+    float: left;
+    position: relative;
+
+    top: -122px;
+
+    width: 160px;
+    height: 120px;
+
+    overflow-x : hidden;
+
+    background: rgba( 0 , 0 , 0 , 0.5 );
+
+}
+.resultItem .duration{
+    float: left;
+    position: relative;
+
+    top: -140px;
+
+    padding-right: 2px;
+    padding-left: 2px;
+    
+    width: 156px;
+    height: 20px;
+    line-height: 20px;
+    
+    text-align: right;
+
+    overflow-x : hidden;
+
+    background: rgba( 0 , 0 , 0 , 0 );
+}
+#searchResult .getMoreResult{
+    height: 120px;
+}
+#searchResult .playing .title{
+    color: #80FF80;
+}
+
+/* Player */
+#youtubePlayer{
+    display: inline-block;
+
+    width: 480px;
+    height: calc( 270px + 24px );
+}
+#youtubePlayer iframe{
+    width: 480px;
+    height: 270px;
+}
+#driftBar{
+    width: 480px;
+    height: 24px;
+}
+#currentTime{
+
+    position: relative;
+    float: left;
+    left: 0;
+    top: -24px;
+
+    padding: 0;
+    padding-right: 4px;
+
+    width: calc( 480px - 4px );
+    height: 24px;
+
+    border: none;
+
+    text-align: right;
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: top;
+
+    color: white;
+    /* #### vendor dependence #### */
+    background:      -o-linear-gradient( right , rgba( 0 , 0 , 0 , 0.64 ) , rgba( 0 , 0 , 0 , 0.0 ) );
+    background:    -moz-linear-gradient( right , rgba( 0 , 0 , 0 , 0.64 ) , rgba( 0 , 0 , 0 , 0.0 ) );
+    background: -webkit-linear-gradient( right , rgba( 0 , 0 , 0 , 0.64 ) , rgba( 0 , 0 , 0 , 0.0 ) );
+    /* #### vendor dependence #### */
+
+}
+
+/* Information */
+#videoInformation{
+    display: inline-block;
+    
+    width: calc( 100% - 480px - 6px );    
+    height: calc( 270px + 24px );
+
+    vertical-align: top;
+    overflow-y: hidden;
+}
+
+#informationTable{    
+    width: 100%;
+}
+#informationTable td{
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+#informationTable td.key{    
+    width: 2em;    
+    text-align: left;
+    vertical-align: top;
+}
+#informationTable td.space{
+    width: 1em;
+    text-align: center;
+}
+span.variationLink{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#informationTable tr#other rd{
+    padding: 0;
+}
+button#openSongDataEditor,
+button#addMyList{
+    float: right;
+    position: relative;
+    right: 0;
+    top: -30px;
+}
+
+/* Controler */
+button.playerControlButton{
+    margin: 0px;
+    padding: 0px;
+
+    width: 116px;
+    height: 32px;
+
+    border: none;
+    vertical-align: top;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    background: inherit;
+    color: #E0E0E0;
+
+}
+button.playerControlButton:hover{
+    background: #4040C0;
+    animation: hoverAnimation 0.3s ease;
+    color: #FFFFFF;
+}
+
+button.playerControlButton:active{
+    background: #204080;
+    color: #E0E0E0;
+}
+
+input#tbxSeekPosition{
+
+    padding: 0px;
+    padding-right: 40px;
+
+    border: none;
+    vertical-align: bottom;
+
+    width: 64px;
+    height: 32px;
+
+    font-size: 16px;
+    text-align: right;
+
+    background: inherit;
+
+}
+input#tbxSeekPosition:hover{
+    background: #4040C0;
+    animation: hoverAnimation 0.3s ease;
+}
+span#lblSeekUnit{
+
+    display: inline-block;
+
+    vertical-align: bottom;
+    position: relative;
+    left: -40px;
+
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+
+    font-size: 16px;
+    text-align: left;
+    background: rgba( 0 , 0 , 0 , 0 );
+
+}
+@keyFrames hoverAnimation{
+    0% { background: inherit; }
+    100% { background: #4040C0; }
+}
+
+/* Play Mode Selector */
+#playModeSelector {
+    display:inline-block;
+
+    vertical-align: top;
+}
+#playModeSelector li {   
+    float: left;
+    overflow: hidden;
+}
+#playModeSelector button{
+
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #000000;
+    border-radius: 0px;
+    border: none;
+
+    width: 108px;
+    height: 32px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    font-size: 16px;
+    font-weight:bold;
+
+    background: inherit;
+
+    color:#C0C0C0;
+
+    cursor:pointer;
+}
+#playModeSelector button {
+    position: relative;
+    z-index: 1;
+}
+
+#playModeSelector button:hover{
+    color: #8080FF;
+}
+#playModeSelector input:checked + button{
+    background: #404040;
+}
+#playModeSelector input[type=radio] {
+    display: none;
+}
+
+
+/* Chord */
+#currentBeat{
+    width: calc( 100% - 16px );
+    padding-left: 8px;
+    padding-right: 8px;
+    
+    border: none;
+    
+    font-size: 16px;
+    font-weight: bold;
+
+    background: #404040;
+    color: white;    
+}
+#chordContentWrapper{
+    overflow-x: hidden;
+}
+#chordContent{
+    width: 200%;
+    height: auto;
+}
+#chordDisplay{
+    display: inline-block;
+    padding: 4px;
+    width: calc( 50% - 500px );
+
+    vertical-align: top;
+    
+    line-height: 1.2;
+    min-height: 32px;    
+}
+#historyDisplay{
+    display: inline-block;
+    padding: 4px;
+    width: 500px;
+
+    vertical-align: top;
+    
+    line-height: 1.2;
+    min-height: 32px;    
+
+}
+
+#chordEditor{
+    display: inline-block;
+    position: relative;
+    left: 4px;
+    
+    width: 25%;
+    height: auto;
+}
+
+#chordSource,
+#chordHistory{
+    
+    border: none;
+    padding: 4px;
+
+    width: calc( 100% - 8px );
+    height: calc( 100% - 40px );
+
+    resize: vertical;
+
+    font-size: 16px;
+
+    background: #C0C0C0;
+    color: #202020;
+}
+
+#chordEditorButtons {
+    height: 32px;
+
+}
+#chordEditorButtons > *{
+    vertical-align: middle;
+}
+
+#editorMessage{
+    
+    height: 32px;
+    line-height: 32px;
+
+    font-size: 20px;
+}
+
+button.alertButton{
+    animation: animeAlert 2s infinite;
+}
+
+@keyframes animeAlert {
+    0% {background: #606060;}
+    50% {background: #C06060;}
+    100% {background: #606060;}
+}
+
+@keyframes animeMessage {
+    0% {opacity: 0.0;}
+    3% {opacity: 1.0;}
+    80% {opacity: 1.0;}
+    100% {opacity: 0.0;}
+}
+
+#chordDisplay span{
+    color: inherit;
+    background: inherit;
+}
+#chordDisplay .chordFragment{
+
+    cursor: pointer;
+}
+#chordDisplay .chordFragmentCurrent,
+#chordDisplay .chordFragmentNext{
+
+    margin: -4px;
+    padding: 4px;
+
+    border-radius: 4px;
+
+    position: relative;
+}
+#chordDisplay .chordFragmentCurrent{
+    background: #C0C000;
+    /* #### vendor dependence #### */
+    background:      -o-linear-gradient( top , #C0C000 , #A0A000 );
+    background:    -moz-linear-gradient( top , #C0C000 , #A0A000 );
+    background: -webkit-linear-gradient( top , #C0C000 , #A0A000 );
+    /* #### vendor dependence #### */
+
+    color: #202020;
+    z-index: 2;
+}
+#chordDisplay .chordFragmentNext{
+    background: #404040;
+    animation: chordHighlight 0.5s cubic-bezier( 0.6, 0.4 , 0.6 , 0.4 );
+    z-index: 1;
+}
+#chordDisplay .chordFragmentCurrent *{
+    color: inherit !important;
+}
+@keyframes chordHighlight{
+    0%   { background: #202020; }
+    100%   { background: #404040; }
+}
+
+#chordDisplay .chordError{
+    background: red;
+    color: black;
+}
+
+button#openChordEditor{
+    float: right;
+    position: relative;
+    right: 0px;
+    top: -30px;
+}
+
+/* Song Data Editor */
+#songDataEditor{
+    width: 640px;
+    height: 640px;
+}
+#editorFrame{
+    width: 100%;
+    height: calc( 100% - 52px );
+}
+#songDataEditor hr{
+    margin-left: 8px;
+    margin-right: 8px;
+}
+#closeSongDataEditor{    
+    margin-left: 8px;
+}

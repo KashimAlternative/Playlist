@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="robots" content="none">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <!--<script type="text/javascript" src="/common/jquery.min.js" charset="utf-8"></script>-->
+    <script>$(function(){console.log("jQuery Ready");});</script>
+    <script type="text/javascript" src="/common/jquery.cookie.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/common/util.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/jquery-modal.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/playlist.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/chord.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/data_edit.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/url_search.js" charset="utf-8"></script>
+    <!--<script type="text/javascript" src="js/messagebox.js" charset="utf-8"></script>-->
+    <script type="text/javascript" src="https://www.youtube.com/iframe_api" charset="utf-8"></script>
+
+    <link rel="stylesheet" type="text/css" href="/common/default.css">
+    <link rel="stylesheet" type="text/css" href="css/playlist.css">
+
+    <link rel="shortcut icon" href="images/repeat.ico">
+    <title>Playlist</title>
+
+  </head>
+
+  <body><div id="fullFunction" class="hidden"></div>
+
+    <div class="base">
+      <select id="playlistSelector" class="playlist"></select>
+    </div>
+    
+    <div class="base">
+      <select id="songSelector" class="playlist"></select>
+    </div>
+
+    <div class="base">
+      <form id="urlSearch">
+	<input type="text" id="url" list="urlList" placeholder="URL or Search Word ...">
+	<datalist id="urlList"></datalist>
+      </form>
+    </div>
+
+    <div class="base">
+      <div id="searchResult">
+      </div>
+    </div>
+
+    <div class="base">
+      <div id="youtubePlayer">
+	<meter id="driftBar"></meter>
+	<input type="text" id="currentTime" readonly>
+      </div>
+      <div id="videoInformation">
+        <input type="text" id="currentFileName" class="hidden">
+	<input type="number" id="dataTimeStamp" class="hidden">
+	<table id="informationTable">
+	  <tr id="lyrics">     <td class="key">Lyrics</td>      <td class="space">:</td> <td class="value"></td> </tr>
+	  <tr id="music">      <td class="key">Music</td>       <td class="space">:</td> <td class="value"></td> </tr>
+	  <tr id="arrange">    <td class="key">Arrangement</td> <td class="space">:</td> <td class="value"></td> </tr>
+	  <tr id="vocal">      <td class="key">Vocal</td>       <td class="space">:</td> <td class="value"></td> </tr>
+	  <tr id="perform">    <td class="key">Perform</td>     <td class="space">:</td> <td class="value"></td> </tr>
+	  <tr id="spacer">     <td><br></td></tr>
+	  <tr id="remark">     <td class="key">Remark</td>      <td class="space">:</td> <td class="value"></td> </tr>
+	  <tr id="variations"> <td class="key"></td>            <td class="space"></td>  <td class="value"></td> </tr>
+	  <tr id="other"><td colspan="3" class="value"></td></tr>
+	</table>
+      </div>
+<!--      <button id="addMyList">Add</button> -->
+      <button id="openSongDataEditor">Edit</button>
+    </div>
+
+    <div class="base">
+      <input type="text" id="textPlay" class="hidden" value="Play">
+      <input type="text" id="textPause" class="hidden" value="Pause">
+      <button id="btnPlayPause" class="playerControlButton"></button>
+      <button id="btnPrevSong" class="playerControlButton">Prev</button>
+      <button id="btnNextSong" class="playerControlButton">Next</button>
+      <button id="btnSeek" class="playerControlButton">Seek</button>
+      <input id="tbxSeekPosition" type="text" maxlength="8" value="0">
+      <span id="lblSeekUnit">sec</span>
+      <ul id="playModeSelector">
+	<li><input type="radio" name="playMode" value="shuffle"><button class="playMode">Shuffle</button></li>
+	<li><input type="radio" name="playMode" value="sequential"><button class="playMode">Sequential</button></li>
+	<li><input type="radio" name="playMode" value="repeat"><button class="playMode">Repeat</button></li>
+	<li><input type="radio" name="playMode" value="playonce"><button class="playMode">Once</button></li>
+      </ul>
+    </div>
+
+    <div class="base">
+      <input type="text" id="currentBeat" readonly>
+      <div id="chordContentWrapper">
+	<div id="chordContent">
+	  <div id="chordDisplay"></div>
+	  <div id="historyDisplay"></div>
+	  <div id="chordEditor">
+	    <textarea id="chordSourceBackup" class="hidden"></textarea>	  
+	    <textarea id="chordHistory" placeholder="History ..." style="display:none;"></textarea>
+	    <textarea id="chordSource" placeholder="Chord ..."></textarea>
+	    <div id="chordEditorButtons">
+	      <button id="uploadChord" class="chordEditor">Save</button>
+	      <button id="resetChordEdit" class="chordEditor">Reset</button>
+	      <button id="insertTemplate" class="chordEditor">Template</button>
+	      <button id="openChordHistory" class="chordEditor">History</button>
+	      <span id="editorMessage"></span>	  
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <input type="text" id="chordTimeStamp" class="hidden">
+      <button id="openChordEditor">Edit</button>
+    </div>
+
+    <div class="base">
+      Version: 00.131
+    </div>
+
+    <div id="debug"></div>
+    
+    <div id="songDataEditor">
+      <input type="test" id="timestamp" class="hidden"></input>
+      <table id="songDataToEdit">
+        <tr><td>Title:</td><td><input type="text" id="title"></td></tr>
+        <tr><td>Video ID:</td><td><input type="text" id="videoId"></td></tr>
+        <tr><td>Lyricis:</td><td><input type="text" id="lyrics"></td></tr>
+        <tr><td>Music:</td><td><input type="text" id="music"></td></tr>
+        <tr><td>Arangement:</td><td><input type="text" id="arrange"></td></tr>
+        <tr><td>Vocal:</td><td><input type="text" id="vocal"></td></tr>
+        <tr><td>Perform:</td><td><input type="text" id="perform"></td></tr>
+        <tr><td>Remark:</td><td><input type="text" id="remark"></td></tr>
+      </table>
+      <table id="songVariationsToEdit">
+        <tr><td>Variations:</td><td>Title</td><td>VideoId</td><td></td></tr>
+        <tr><td></td><td><input type="text" class="titleVariation"></td><td><input type="text" class="videoIdVariation"></td><td><button class="addVariation">+</button></td></tr>
+      </table>
+      
+      <hr>
+      <button id="uploadSongData">Set</button>
+      <button id="closeSongDataEditor">Close</button>
+    </div>
+      
+  </body>
+</html>
+

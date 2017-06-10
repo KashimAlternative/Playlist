@@ -1,0 +1,305 @@
+*{
+
+    margin: 0px;
+    padding: 0px;
+    border: 1px solid white;
+    border: none;
+
+    width: 100%;
+
+    font-size: 14px;
+
+    background: #202020;
+    color: #C0C0C0;
+}
+
+html ,
+body{
+    width: 100%;
+}
+
+.hidden{
+    display: none;
+}
+
+div.separator{  
+    height: 2px;  
+    background: #800000;
+}
+
+/* Selector */
+#selectors{
+    position: fixed;
+    left: 0;
+    top: 0;    
+    z-index: 5;
+}
+select#playlistSelector ,
+select#songSelector{
+
+          -o-appearance: button;
+        -moz-appearance: button;
+     -webkit-appearance: button;
+
+    padding: 2px;
+
+    width: 100%;
+    height: 28px;
+
+    border-radius: 0px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    vertical-align: middle;
+
+}
+
+/* Player */
+#youtubePlayer{
+    margin: auto;
+    margin-top: 60px;
+
+    width: 100%;
+    height: 180px;
+
+    vertical-align: middle;
+}
+#youtubePlayer iframe{
+    width: 100%;
+    height: 100%;
+}
+#driftBar{
+    
+    display: block;
+
+    width: 100%;
+    height: 4px;
+}
+
+/* TabPage */
+div#infoButtonArea{
+    background: black;
+}
+div#infoButtonArea{
+    text-align: center;
+}
+input.tabButton{
+
+         -o-appearance: none;
+       -moz-appearance: none;
+    -webkit-appearance: none;
+
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+    border-radius: 10px 10px 0px 0px;
+
+    width: calc( 33% - 8px ) ;
+    height: 28px;
+
+    background: #404040;
+}
+div.tabPage{
+    display: none;
+
+    margin: 0%;
+    margin-bottom: 60px;
+
+    padding: 2%;
+    width: 96%;
+}
+input.infoButtonPressed , div.tabPage , div.tabPage * {
+    background: #202020;
+}
+
+/* Information */
+#informationTable{
+}
+#informationTable td{
+    height: 1.2em;
+}
+#informationTable td.key{
+    width: 2em;
+    text-align: left;
+    vertical-align: top;
+}
+#informationTable td.space{
+    width: 1em;
+    text-align: center;
+    vertical-align: top;
+}
+#informationTable td.value{
+    width: auto;
+    text-align: left;
+}
+
+#barAndTime {
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 96%
+}
+#barAndTime td:first-child{
+    width: 0;
+}
+span.variationLink{
+    text-decoration: underline;
+}
+
+/* Chord */
+div#chordDisplay{
+    line-height: 120%;
+}
+#currentBeat{
+    padding: 4px;
+    width: calc( 100% - 8px );
+    background: #402020;
+    font-size: inherit;
+}
+
+/* Tool */
+
+/* About */
+ul#environment{
+    width: 96%;
+}
+ul#environment li{
+    margin-left: 20px;
+
+    width: auto;
+
+    list-style-type: disc;
+}
+
+
+#chordDisplay span{
+    color: inherit;
+    background: inherit;
+}
+#chordDisplay .chordFragmentCurrent,
+#chordDisplay .chordFragmentNext{
+    margin: -4px;
+    padding: 4px;
+
+    border-radius: 4px;
+
+    position: relative;
+}
+#chordDisplay .chordFragmentCurrent{
+    background: #C0C000;
+    color: #000000;
+    z-index: 2;
+}
+#chordDisplay .chordFragmentNext{
+    background: #404040;
+    animation: chordHighlight 0.5s cubic-bezier( 0.6, 0.4 , 0.6 , 0.4 );
+    z-index: 1;
+}
+
+#chordDisplay .chordError{
+    background: red;
+    color: black;
+}
+
+
+#controlers{
+    width: 100%;
+
+    position: fixed;
+    left: 0;
+    bottom: 0;
+
+    z-index: 5;
+}
+
+/* Controler */
+div#playerControler{
+    text-align: center;
+    
+    width: 100%;
+    height: 32px;
+    
+}
+button.playerControlButton{
+    border: 1px outset #404040;
+    border: none;
+    border-radius: 0px;
+    margin: auto;
+
+    width: 32%;
+    height: 100%;
+ 
+    vertical-align: middle;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    color: #E0E0E0;
+    
+}
+button.playerControlButton:active{
+    border: 1px outset #4040FF;
+    border: none;
+
+    background: #204080;
+    color: #E0E0E0;
+}
+
+button#btnPlayPause{
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+/* Play Mode Selector */
+ul#playModeSelector {
+    display: inline-block;
+
+    width: 100%;
+    
+    vertical-align: top;
+}
+ul#playModeSelector li {    
+    width: 25%;
+
+    float: left;
+
+    overflow: hidden;
+}
+ul#playModeSelector button {
+    border-radius: 2px;
+
+    width: 100%;
+    height: 32px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    font-size: 16px;
+    font-weight:bold;
+
+    background: rgba( 0 , 0 , 0 , 0 );
+    color:#C0C0C0;
+
+    cursor:pointer;
+}
+ul#playModeSelector button {
+
+         -o-appearance: none;
+       -moz-appearance: none;
+    -webkit-appearance: none;
+    
+    position: relative;
+    z-index: 1;
+}
+ul#playModeSelector input[type=radio]:checked + button{
+    background: #404040;
+}
+ul#playModeSelector input[type=radio] {
+    display: none;
+}
+@keyframes chordHighlight{
+    0%   { background: #202020; }
+    100%   { background: #404040; }
+}

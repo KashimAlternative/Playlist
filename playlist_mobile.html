@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+  <head><!--################ HEADER ################-->
+
+    <meta charset="utf-8">
+    <meta name="robots" content="none">
+
+    <script type="text/javascript" src="/common/jquery.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/common/jquery.cookie.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/common/util.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/playlist.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/chord.js" charset="utf-8"></script>
+    <!--<script type="text/javascript" src="js/messagebox.js" charset="utf-8"></script>-->
+    <script type="text/javascript" src="https://www.youtube.com/iframe_api" charset="utf-8"></script>
+
+    <link rel="stylesheet" type="text/css" href="/common/default.css">
+    <link rel="stylesheet" type="text/css" href="css/playlist_mobile.css">
+
+    <meta name="viewport" content="width=device-width , user-scalable=no">
+
+    <link rel="shortcut icon" href="images/repeat.ico">
+    <title>Playlist</title>
+
+  </head><!--################ HEADER ################-->
+
+  <body>
+
+    <div id="selectors">
+      <select id="playlistSelector"></select>
+      <div class="separator"></div>
+      <select id="songSelector"></select>
+      <div class="separator"></div>
+    </div>
+    
+    <div id="youtubePlayer"></div>
+    <meter id="driftBar"></meter>
+
+    <div id="infoButtonArea">
+      <input id="btn_information" class="tabButton" type="button" value="Info."><input id="btn_chord" class="tabButton" type="button" value="Chord"><!--<input id="btn_tool" class="tabButton" type="button" value="Tool">--><input id="btn_about" class="tabButton" type="button" value="About">
+    </div>
+
+    <div id="information" class="tabPage">
+      <table id="informationTable">
+	<tr id="lyrics">     <td class="key">Lyr.</td> <td class="space">:</td> <td class="value"></td> </tr>
+	<tr id="music">      <td class="key">Mus.</td> <td class="space">:</td> <td class="value"></td> </tr>
+	<tr id="arrange">    <td class="key">Arr.</td> <td class="space">:</td> <td class="value"></td> </tr>
+	<tr id="vocal">      <td class="key">Voc.</td> <td class="space">:</td> <td class="value"></td> </tr>
+	<tr id="perform">    <td class="key">Play</td> <td class="space">:</td> <td class="value"></td> </tr>
+	<tr id="remark">     <td class="key">Rem.</td> <td class="space">:</td> <td class="value"></td> </tr>
+	<tr id="variations"> <td class="key"></td>     <td class="space"> </td> <td class="value"></td> </tr>
+      </table>
+    </div>
+
+    <div id="chord" class="tabPage">
+      <textarea id="chordSourceBackup" class="hidden"></textarea>
+      <textarea id="chordSource" class="hidden"></textarea>
+      <!--<input type="text" id="currentBeat" readonly>-->
+      <div id="chordDisplay"></div>
+    </div>
+
+    <div id="tool" class="tabPage">
+
+      <div id="none">None</div>
+      <br>
+      
+    </div>
+
+    <div id="about" class="tabPage">
+      Recommended Browsers (Android):<br>
+      <br>
+      <ul id="environment">
+	<li>Chrome</li>
+	<li>Firefox</li>
+      </ul>
+      <br>
+      * iOS is not recommended.
+      <br>
+      <br>
+      <hr> 
+      <div>
+	Version : 00.131
+      </div>
+    
+    </div>
+    
+    <div id="controlers">
+
+      <div class="separator"></div>
+
+      <div id="playerControler">
+	<input type="text" id="textPlay" class="hidden" value="Play">
+	<input type="text" id="textPause" class="hidden" value="Pause">
+	<button id="btnPrevSong" class="playerControlButton">Prev</button><button id="btnPlayPause" class="playerControlButton">Play</button><button id="btnNextSong" class="playerControlButton">Next</button>
+      </div>
+      
+      <div class="separator"></div>
+
+      <ul id="playModeSelector">
+	<li><input type="radio" name="playMode" value="shuffle">   <button class="playMode">Shuf.</button></li>
+	<li><input type="radio" name="playMode" value="sequential"><button class="playMode">Seq.</button></li>
+	<li><input type="radio" name="playMode" value="repeat">    <button class="playMode">Rep.</button></li>
+	<li><input type="radio" name="playMode" value="playonce">  <button class="playMode">Once</button></li>
+      </ul>
+    
+    </div>
+    
+  </body>
+</html>

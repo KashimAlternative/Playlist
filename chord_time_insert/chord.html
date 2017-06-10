@@ -1,0 +1,80 @@
+<meta charset="utf-8">
+<meta name="robots" content="none">
+
+<link rel="stylesheet" type="text/css" href="chord.css">
+
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+
+<body class="basicstyle">
+<div class="content">
+  <div class="mainframe">
+    <button id="conv">変換</button>
+    テンポ:<input type="text" id="tempo" value="196@0#1280" size=20> / 
+    <input type="text" id="basebeat" value=4 size=3>拍 / 
+    <label><input type="checkbox" id="synco_en" checked>シンコペーション符の自動判定</label> /
+    <label><input type="checkbox" id="chordfrag" checked>コード単位のフラグメント</label>
+    <label><input type="checkbox" id="omit_tags" checked>既存タグ(frag, block)の削除</label>
+    <div style="width:100%; padding:0px 10px;">
+<div style="float:left; width:40%;">
+      <textarea rows=30 id="original_chord" style='font-size:10pt; width:95%;'>
+<演奏順序> P1,P2,A,B,C1,I1,A,B,C1,I2,D,C2,E
+
+・P1「あいつもこいつも」
+&nbsp;||Ebm7|%|%|Fm7・Em7|| x2
+・P2:前奏
+&nbsp;||Ebm7|~Ab7|CbM7|~Bbm7||
+&nbsp;||~CbM7・~Bbm7|~Abm7・~GbM7|<blue>~Gbaug(onE)|~Ebm(onBb)…~Bb7+5</blue>||
+・A「つまらぬタワゴト」
+/1st/ ||Ebm7|%|Ebm9|%|Abm7|Db9|Gb(9)|Gb9||
+/2nd/ ||Ebm7|%|Abm7|%|<blue>Db9</blue>|%|GbM9|%||
+/Common/ ||Fm7-5|<blue>Bb7+5</blue>|Ebm9|<blue>Db</blue>|Abm7|<blue>Bb7+5</blue>|Ebm9|Ebm7||
+・B「他人の不幸せを」
+&nbsp;||CbM7|%|Db/Cb|%|Bbm7|%|Eb9|%||
+&nbsp;||~Abm7・~Bbm7|~CbM7・~Bbm7|Abm7・Bbm7|~CbM7・<blue>Gbaug(onE)</blue>…|~Bb7+5(+9)|%|Bb7|%||
+・C1「(この世は)やったもん勝ち」
+&nbsp;||CbM7|~Bb7+5|~Ebm7|~Ab7|<blue>CbmM7</blue>|~Bb7+5(+9)|Ebm7|~Dbm7・~Gb7||
+&nbsp;||~CbM7|~Bb7+5|~Ebm7|~Ab7|<blue>Db6(9)|Bb7</blue>|CbM7|Bb7+5(+9)||
+・I1:間奏
+<blue>&nbsp;||Ebm|%|%|%|%|%|~%・~Gb(onDb)|[3/4]~CbM7|[3/4]Bb7+5||</blue>
+・I2:間奏
+<blue>&nbsp;||CbM7|%|E9|Bb7(+9)|Ebm9|%|%|%||
+&nbsp;||~Cm7-5|%|Fm7|Bb7+5|~CbM9|%|~Db|~Bb7+5(onD)||</blue>
+・D「あなただけの」
+&nbsp;<blue>||EbM9|%</blue>|Abm9|%|Db|Bb7+5|Ebm7|%/Db||
+&nbsp;||Cm7-5|CbM7|Bbm7|<blue>AM7</blue>|Abm7|%|Bb7+5(+9)|%|%|%|%|%||
+<blue>
+・C2「(されども)社会は」
+&nbsp;||CbM7|~Bb7+5|~Ebm7|~Ab7|Abm7|Bdim・Bb7+5(+9)|Ebm7|~Ab6||
+&nbsp;||~Abm9|~Bb7+5|~Ebm7|~Ab7|CbmM7|~Bb7+5(+9)|Ebm7|~Dbm7・~Gb7||
+&nbsp;||~Cm7-5|~CbM7・~Bb7+5|~Ebm7|~Ab7|Db6(9)|Bb7|CbM7|Bb7+5(+9)||
+・E:後奏
+&nbsp;||~CbM7|~Bb7+5|~Ebm7|~Ab7|CbmM7|~Bb7+5(+9)|Ebm7|~Dbm7・~Gb7||
+&nbsp;||~Cm7-5|~CbM7・~Bb7+5|~Ebm7|~Ab7|CbM7(13)|Bb7+5|Db(onCb)||
+</blue>
+</textarea>
+</div>
+<pre id="interim" style="float:left; font-size:10pt; width:5%;"></pre>
+<div style="float:left; width:55%;">
+      <textarea rows=30 id="fragmented_chord" style='font-size:10pt; width:95%;'>【結果】</textarea>
+</div>
+<div style="clear:both;"></div>
+      <textarea rows=5 id="alarm" style='font-size:10pt; width:95%;'>【エラー】</textarea>
+    </div>
+  </div>
+</div>
+<pre>
+自動で小節単位でフラグメントします。
+
+【できないこと】
+・<s>小節内のコード分割は未対応</s> (ただしコードチェンジベースの分割ではない)
+・ブロック先頭に"・"がないと無理
+・"×n","×10以上"は無理
+・2回目だけ"x2"とか無理
+・"&lt;Nth&gt;"の分岐部分に2行以上スコアがあると無理 (1行で書かれていても"+"が使われていると詰む)
+・<s>"&lt;10th以上&gt;"の分岐は無理</s>
+・<s>分岐した後の合流や"&lt;Common&gt;"は無理</s> (ただし分岐部分の拍数が異なる場合は未対応)
+・行内にある"+"や分岐は勝手に改行する
+</pre>
+
+<script type="text/javascript" src="chord.js" charset="utf-8"></script>
+</body></html>
